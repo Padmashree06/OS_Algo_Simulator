@@ -8,12 +8,12 @@ function Process({ p = [], algorithm, rmProcess }) {
          
   <div 
   key={process.id} 
-  className="flex flex-col w-full mb-2 overflow-hidden">
+  className="flex flex-col justify-center w-full max-w-50 mb-2 overflow-hidden">
   
-  <div className="flex items-center justify-between w-full">
-    <div className="flex items-center gap-2 min-w-0">
+  <div className="flex items-center justify-between mx-auto w-full">
+    <div className="flex items-center gap-2 mx-auto md:mx-0 min-w-0">
       <div className={`w-3 h-3 rounded-full ${process.color}`}></div>
-      <p className="truncate">Process {process.id}</p>
+      <p className="truncate ">Process {process.id}</p>
     </div>
 
     <p
@@ -26,7 +26,7 @@ function Process({ p = [], algorithm, rmProcess }) {
   </div>
 
  
-  <div className="flex flex-wrap gap-x-3 gap-y-1 text-sm mt-1">
+  <div className="flex flex-wrap gap-x-3 gap-y-1 mx-auto text-sm mt-1">
 
     
     <span>Arrival: {process.arrival}</span>
