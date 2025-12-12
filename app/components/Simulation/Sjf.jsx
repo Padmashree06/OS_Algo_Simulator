@@ -1,12 +1,6 @@
 import React from "react";
 
 function Sjf({ np = [] }) {
-  
-  if (!Array.isArray(np) && np && Array.isArray(np.np)) {
-    np = np.np;
-  }
-
-  
   const normalized = (Array.isArray(np) ? np : [])
     .map((p) => ({
       id: p.id,
@@ -23,7 +17,7 @@ function Sjf({ np = [] }) {
 
 
   const sorted = [...normalized].sort((a, b) => a.arrival - b.arrival);
-  let currentTime = sorted[0];
+  let currentTime = sorted[0].arrival;
   let completed = [];
   let pending =[];
   let i=0;
@@ -32,37 +26,23 @@ function Sjf({ np = [] }) {
   i=1;
 
   while(completed.length< sorted.length){
-    while(i<sorted.length && sorted[i]<=currentTime){
+    while(i<sorted.length && sorted[i].arrival<=currentTime){
         pending.push(sorted[i]);
         i++;
     }
     if(pending.length===0){
         completed.push(sorted[i]);
         i++;
+        currentTime=sorted[i].arrival+ sorted[i].burst;
     }
     pending.sort((a,b)=>a.burst- b.burst);
-    const next=pending.shift();
+     next=pending.shift();
     completed.push(next);
 
-    currentTime+=next.burst;
+    currentTime +=next.burst;
   }
-
-  
-  let current = 0;
-  const segments = completed.map((p) => {
-    const gap = Math.max(0, p.arrival - current);
-    const burst = p.burst;
-    current = current + gap + burst; 
-    return { ...p, gap, burst };
-  });
-
-  const totalTime = segments.reduce((acc, s) => acc + s.gap + s.burst, 0);
-
-  if (totalTime === 0) {
-    return <div className="text-sm text-gray-400">All bursts are zero — nothing to display</div>;
-  }
-
   let t = 0;
+  let totalTime=0;
 
 const timeline = completed.map(p => {
   const start = Math.max(t, p.arrival);
@@ -71,7 +51,7 @@ const timeline = completed.map(p => {
 
  
   t = end;
-
+  totalTime+=t;
   return {
     ...p,
     start,

@@ -1,12 +1,7 @@
 import React from "react";
 
-function Fifo({ np = [] }) {
-  
-  if (!Array.isArray(np) && np && Array.isArray(np.np)) {
-    np = np.np;
-  }
+function Fifo( {np = [] }) {
 
-  
   const normalized = (Array.isArray(np) ? np : [])
     .map((p) => ({
       id: p.id,
@@ -23,32 +18,16 @@ function Fifo({ np = [] }) {
 
 
   const sorted = [...normalized].sort((a, b) => a.arrival - b.arrival);
-
-  
-  let current = 0;
-  const segments = sorted.map((p) => {
-    const gap = Math.max(0, p.arrival - current);
-    const burst = p.burst;
-    current = current + gap + burst; 
-    return { ...p, gap, burst };
-  });
-
-  const totalTime = segments.reduce((acc, s) => acc + s.gap + s.burst, 0);
-
-  if (totalTime === 0) {
-    return <div className="text-sm text-gray-400">All bursts are zero — nothing to display</div>;
-  }
-
+ 
   let t = 0;
-
-const timeline = sorted.map(p => {
+  let totalTime=0;
+  const timeline = sorted.map(p => {
   const start = Math.max(t, p.arrival);
   const gap = start - t;    
   const end = start + p.burst;
 
- 
   t = end;
-
+  totalTime+= gap + p.burst;
   return {
     ...p,
     start,
@@ -57,7 +36,9 @@ const timeline = sorted.map(p => {
     
   };
 });
-
+ if (totalTime === 0) {
+    return <div className="text-sm text-gray-400">All bursts are zero, nothing to display</div>;
+  }
 
  
   return (
