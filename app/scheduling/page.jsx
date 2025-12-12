@@ -190,7 +190,7 @@ const colors=['bg-blue-400','bg-violet-500', 'bg-amber-400','bg-red-500', 'bg-li
   </button>
   </div>
 </div>
-      <div className='border-2 border-gray-200 w-fit mx-auto rounded-2xl md:w-1/4 md:ml-4 min-h-6 max-h-fit'>
+      <div className='border-2 border-gray-200 w-fit mx-auto rounded-2xl md:w-1/4 md:ml-4 min-h-6 max-h-50 overflow-y-scroll'>
           <div className='p-5 flex flex-wrap flex-col justify-center'>
             <p className='text-center font-bold mb-1'> Processes</p>
              {schedulingAlgo.shortForm==='RR' &&
