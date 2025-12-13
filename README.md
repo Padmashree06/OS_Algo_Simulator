@@ -35,5 +35,5 @@ npm install
 npm run dev
 ```
 
-## Vidoe Demonstration 
+## Video Demonstration 
 [Screencast from 2025-12-12 23-08-31.webm](https://github.com/user-attachments/assets/700f17c9-44b7-478f-9e1c-d978257fc9ad)
