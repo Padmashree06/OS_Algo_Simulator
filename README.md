@@ -48,5 +48,5 @@ We welcome contributions! Please see our [Contributing Guidelines](https://githu
     Push to the branch
     Create a Pull Request
 
-📄 License
+## 📄 License
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/Padmashree06/OS_Algo_Simulator/blob/main/LICENSE) file for details.
